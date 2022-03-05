@@ -1,0 +1,40 @@
+﻿@model CozmatikDukkan.Areas.ManagerPanel.ViewModels.ManagerLoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/ManagerPanel/Content/signin.css" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <main class="form-signin">
+        @using (Html.BeginForm())
+        {
+            <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Yönetici Firişi Yapınız</h1>
+
+            <div class="form-floating">
+                @Html.EditorFor(m=> m.Mail, new { @placeholder="Mail Adresiniz", @autocomplete=false, @class="form-control"})
+            </div>
+            <div class="form-floating">
+                @Html.PasswordFor(m => m.Mail, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    @Html.EditorFor(m => m.RememberMe, new {@class = "form-control" })
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        }
+    </main>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

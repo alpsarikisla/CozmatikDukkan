@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozmatikDukkan", "CozmatikDukkan\CozmatikDukkan.csproj", "{FFB7C526-BDA5-4A67-9AE8-98C2B333D626}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFB7C526-BDA5-4A67-9AE8-98C2B333D626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB7C526-BDA5-4A67-9AE8-98C2B333D626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB7C526-BDA5-4A67-9AE8-98C2B333D626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB7C526-BDA5-4A67-9AE8-98C2B333D626}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1627CFC-4D04-4D6B-8BF3-53CB23807161}
+	EndGlobalSection
+EndGlobal
