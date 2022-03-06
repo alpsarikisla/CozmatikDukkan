@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CozmatikDukkan.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -11,11 +12,26 @@ namespace CozmatikDukkan.Areas.ManagerPanel.Filters
 {
     public class ManagerAuthenticationFilterAttribute : ActionFilterAttribute, IAuthenticationFilter
     {
+        CozmatikModel db = new CozmatikModel();
         public void OnAuthentication(AuthenticationContext filterContext)
         {
             if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["manager"])))
             {
-                filterContext.Result = new HttpUnauthorizedResult();
+                if (filterContext.HttpContext.Request.Cookies["managerInfo"] != null)
+                {
+                    HttpCookie savedCookie = filterContext.HttpContext.Request.Cookies["managerInfo"];
+                    string mail = savedCookie.Values["managermail"];
+                    string password = savedCookie.Values["managerpassword"];
+                    //savedCookie.Expires = DateTime.Now.AddDays(10);
+
+                    Manager m = db.Managers.First(x => x.Mail == mail && x.Password == password);
+                    filterContext.HttpContext.Session["manager"] = m;
+                }
+                else
+                {
+                    filterContext.Result = new HttpUnauthorizedResult();
+                }
+                
             }
         }
 

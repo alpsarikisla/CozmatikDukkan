@@ -81,3 +81,4 @@ C:\Users\302-PC\Documents\GitHub\CozmatikDukkan\CozmatikDukkan\obj\Debug\Cozmati
 C:\Users\302-PC\Documents\GitHub\CozmatikDukkan\CozmatikDukkan\obj\Debug\CozmatikDukkan.csproj.CoreCompileInputs.cache
 C:\Users\302-PC\Documents\GitHub\CozmatikDukkan\CozmatikDukkan\obj\Debug\CozmatikDukkan.dll
 C:\Users\302-PC\Documents\GitHub\CozmatikDukkan\CozmatikDukkan\obj\Debug\CozmatikDukkan.pdb
+C:\Users\302-PC\Documents\GitHub\CozmatikDukkan\CozmatikDukkan\obj\Debug\CozmatikDukkan.csproj.CopyComplete

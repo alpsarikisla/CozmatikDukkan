@@ -111,6 +111,7 @@
   <ItemGroup>
     <Content Include="Areas\ManagerPanel\Content\dashboard.css" />
     <Content Include="Areas\ManagerPanel\Content\signin.css" />
+    <Content Include="Areas\ManagerPanel\Images\login.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />

@@ -11,28 +11,38 @@
     <title>Index</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Areas/ManagerPanel/Content/signin.css" rel="stylesheet" />
+    <style>
+        .duzenle
+        {
+            margin:0 !important;
+        }
+    </style>
 </head>
 <body class="text-center">
     <main class="form-signin">
         @using (Html.BeginForm())
         {
-            <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Yönetici Firişi Yapınız</h1>
-
+            <img class="mb-4" src="~/Areas/ManagerPanel/Images/login.png" alt="logo" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Yönetici Girişi Yapınız</h1>
+            @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
             <div class="form-floating">
-                @Html.EditorFor(m=> m.Mail, new { @placeholder="Mail Adresiniz", @autocomplete=false, @class="form-control"})
+                @Html.EditorFor(m => m.Mail, new { htmlAttributes = new { @placeholder = "Mail Adresiniz", @class = "form-control", @autocomplete = "off" } })
+                <label for="floatingInput">Email address</label>
+                @Html.ValidationMessageFor(m => m.Mail, "", new { @class = "text-danger duzenle" })
             </div>
             <div class="form-floating">
-                @Html.PasswordFor(m => m.Mail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.PasswordFor(m => m.Password, new { @placeholder = "Şifreniz", @autocomplete = false, @class = "form-control duzenle" })
+                <label for="floatingPassword">Şifre</label>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger duzenle" })
             </div>
 
             <div class="checkbox mb-3">
                 <label>
-                    @Html.EditorFor(m => m.RememberMe, new {@class = "form-control" })
+                    @Html.EditorFor(m => m.RememberMe, new { @class = "form-control" }) Beni Hatırla
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
         }
     </main>
     <script src="~/Scripts/bootstrap.min.js"></script>
