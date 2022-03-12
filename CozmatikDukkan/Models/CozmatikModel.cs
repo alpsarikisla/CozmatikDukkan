@@ -13,6 +13,7 @@ namespace CozmatikDukkan.Models
         }
         public virtual DbSet<ManagerType> ManagerTypes { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -6,6 +6,12 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Areas/ManagerPanel/Content/dashboard.css" rel="stylesheet" />
+    <style>
+        .btn-xs {
+            font-size: 10px;
+            padding: 1px 10px
+        }
+    </style>
 </head>
 <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -29,6 +35,10 @@
                             <a class="nav-link active" href="@Url.Action("Index","Home")">
                                 <span data-feather="home"></span>
                                 Anasayfa
+                            </a>
+                            <a class="nav-link active" href="@Url.Action("Index","Category")">
+                                <span data-feather="home"></span>
+                                Kategori İşlemleri
                             </a>
                         </li>
                       

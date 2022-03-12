@@ -25,13 +25,11 @@ namespace CozmatikDukkan.Areas.ManagerPanel.Controllers
                 Session["manager"] = m;
                 if (model.RememberMe)
                 {
-
                     HttpCookie userInfo = new HttpCookie("managerInfo");
                     userInfo["managermail"] = model.Mail;
                     userInfo["managerpassword"] = model.Password;
                     userInfo.Expires = DateTime.Now.AddDays(10);
                     Response.Cookies.Add(userInfo);
-
                 }
                 return RedirectToAction("Index","Home");
             }
