@@ -1,0 +1,82 @@
+﻿@model CozmatikDukkan.Models.Product
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/ManagerPanel/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Ürün Ekle</h1>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                Ürün Bilgileri
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype="multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="col-md-6">
+                            <div class=" mb-4">
+                                <label class="control-label">Kategori</label>
+                                @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                <label class="control-label">Marka</label>
+                                @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.CoverImage, htmlAttributes: new { @class = "control-label" })
+                                <input type="file" name="file" id="file" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.CoverImage, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" mb-4">
+                                @Html.LabelFor(model => model.ProductStatus, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.ProductStatus)
+                                @Html.ValidationMessageFor(model => model.ProductStatus, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Ürün Ekle" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                @Html.ActionLink("Listeye Geri Dön", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+

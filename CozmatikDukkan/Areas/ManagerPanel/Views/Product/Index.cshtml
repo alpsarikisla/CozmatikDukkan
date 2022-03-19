@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CozmatikDukkan.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagerPanel/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Ürünler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a href="@Url.Action("Create", "Product")" class="btn btn-sm btn-outline-secondary">Ürün Ekle</a>
+        </div>
+
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Resim</th>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() != 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td align="center">
+                        <img src="~/Assets/ProductImages/@Html.DisplayFor(modelItem => item.CoverImage)" class="img-thumbnail" width="50" />
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.Brand.Name)
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td valign="middle">
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                    <td valign="middle">
+                        @if (item.ProductStatus)
+                        {
+                            <label class="badge bg-success">Satışta</label>
+                        }
+                        else
+                        {
+                            <label class="badge bg-secondary">Satış Dışı</label>
+                        }
+                    </td>
+                    <td valign="middle">
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }, new { @class = "btn btn-xs btn-secondary" })
+                        @Html.ActionLink("Detay", "Details", new { id = item.ID }, new { @class = "btn btn-xs btn-warning" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @class = "btn btn-xs btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">
+                    Henüz Kategori Eklemediniz
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+

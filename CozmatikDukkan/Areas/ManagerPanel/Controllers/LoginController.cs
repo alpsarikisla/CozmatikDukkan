@@ -12,6 +12,7 @@ namespace CozmatikDukkan.Areas.ManagerPanel.Controllers
     {
         CozmatikModel db = new CozmatikModel();
         // GET: ManagerPanel/Login
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -21,19 +22,22 @@ namespace CozmatikDukkan.Areas.ManagerPanel.Controllers
         {
             if (ModelState.IsValid)
             {
-                Manager m = db.Managers.First(x=> x.Mail == model.Mail && x.Password == model.Password);
-                Session["manager"] = m;
-                if (model.RememberMe)
+                Manager m = db.Managers.FirstOrDefault(x=> x.Mail == model.Mail && x.Password == model.Password);
+                if (m != null)
                 {
-                    HttpCookie userInfo = new HttpCookie("managerInfo");
-                    userInfo["managermail"] = model.Mail;
-                    userInfo["managerpassword"] = model.Password;
-                    userInfo.Expires = DateTime.Now.AddDays(10);
-                    Response.Cookies.Add(userInfo);
+                    Session["manager"] = m;
+                    if (model.RememberMe)
+                    {
+                        HttpCookie userInfo = new HttpCookie("managerInfo");
+                        userInfo["managermail"] = model.Mail;
+                        userInfo["managerpassword"] = model.Password;
+                        userInfo.Expires = DateTime.Now.AddDays(10);
+                        Response.Cookies.Add(userInfo);
+                    }
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index","Home");
             }
-            return View();
+            return View("Index");
         }
         
         public ActionResult LogOut()

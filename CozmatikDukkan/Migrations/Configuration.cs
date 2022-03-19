@@ -20,6 +20,7 @@ namespace CozmatikDukkan.Migrations
             context.ManagerTypes.AddOrUpdate(m => m.ID, new ManagerType() { ID = 2, Name = "Moderatör" });
 
             context.Managers.AddOrUpdate(m => m.ID, new Manager() { ID = 1, ManagerType_ID = 1, Name = "Alp", Surname = "Sarýkýþla", Mail = "a.sarikisla@hotmail.com", Password = "1234", Status = true });
+
         }
     }
 }

@@ -16,7 +16,12 @@ namespace CozmatikDukkan.Models
         public string Name { get; set; }
 
         [Display(Name = "Kategori Açıklama")]
-        [StringLength(maximumLength: 500, ErrorMessage = "En Fazla 500 karakter olmalıdır")]
+        [StringLength(maximumLength: 5000, ErrorMessage = "En Fazla 500 karakter olmalıdır")]
         public string Description { get; set; }
+
+        [Display(Name = "Yayın Durum")]
+        public bool CategoryStatus { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
