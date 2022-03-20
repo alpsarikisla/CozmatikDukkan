@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CozmatikDukkan.Models.Product>
+    @using CozmatikDukkan.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (Product item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="~/Assets/ProductImages/@item.CoverImage" class="card-img-top" />
+                    <div class="card-body">
+                        <h6>@item.Name</h6>
+                        <label style="text-decoration:line-through">
+                            @{ 
+                                decimal para = item.Price + 15;
+                            }
+                            @para
+                        </label>
+                        <label>
+                            @item.Price
+                        </label>
+                        <a href="" class="btn btn-warning btn-sm d-block">
+                            Sepete Ekle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

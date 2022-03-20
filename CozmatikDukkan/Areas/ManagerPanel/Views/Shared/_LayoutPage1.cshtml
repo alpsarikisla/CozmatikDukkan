@@ -36,28 +36,30 @@
                                 <span data-feather="home"></span>
                                 Anasayfa
                             </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" href="@Url.Action("Index","Category")">
                                 <span data-feather="home"></span>
                                 Kategori İşlemleri
                             </a>
-                            <a class="nav-link active" href="@Url.Action("Index","Product")">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("Index","Brand")">
                                 <span data-feather="home"></span>
-                                ürün İşlemleri
-                            </a>
-                            <a class="nav-link active" href="@Url.Action("Create","Product")">
-                                <span data-feather="home"></span>
-                                ürün İşlemleri
+                                Marka İşlemleri
                             </a>
                         </li>
-                      
+                        <li class="nav-item">
+                            <a class="nav-link active" href="@Url.Action("Index","Product")">
+                                <span data-feather="home"></span>
+                                Ürün İşlemleri
+                            </a>
+                        </li>
                     </ul>
-
-                   
                 </div>
             </nav>
-
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-              @RenderBody()
+                @RenderBody()
             </main>
         </div>
     </div>

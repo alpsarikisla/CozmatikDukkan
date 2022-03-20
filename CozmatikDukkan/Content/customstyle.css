@@ -1,0 +1,23 @@
+﻿body {
+}
+
+.btn-pink {
+    border: 1px solid #991755;
+    background-color: #991755;
+    color: white;
+}
+
+    .btn-pink:hover {
+        background-color: #650030;
+        color:white;
+    }
+
+.btn-outline-pink {
+    border: 1px solid #991755;
+    color: #991755;
+}
+
+    .btn-outline-pink:hover {
+        background-color: #991755;
+        color: white;
+    }

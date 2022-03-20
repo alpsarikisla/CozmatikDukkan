@@ -1,0 +1,12 @@
+﻿@model IEnumerable<CozmatikDukkan.Models.Category>
+@using CozmatikDukkan.Models
+<div class="container">
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex">
+            @foreach (Category item in Model)
+            {
+                <a class="p-2 link-secondary text-white" style="text-decoration:none" href="#">@item.Name</a>
+            }
+        </nav>
+    </div>
+</div>

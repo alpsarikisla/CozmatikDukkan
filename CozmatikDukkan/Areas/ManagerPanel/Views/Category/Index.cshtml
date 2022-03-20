@@ -43,7 +43,17 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @if (!string.IsNullOrEmpty(item.Description))
+                        {
+                            if (item.Description.Length >= 100)
+                            {
+                                @item.Description.Substring(0, 100);
+                            }
+                            else
+                            {
+                                @item.Description
+                            }
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }, new { @class = "btn btn-xs btn-secondary" })
@@ -54,13 +64,13 @@
             }
         }
         else
-            {
-                <tr>
-                    <td colspan="4">
-                        Henüz Kategori Eklemediniz
-                    </td>
-                </tr>
-            }
+        {
+            <tr>
+                <td colspan="4">
+                    Henüz Kategori Eklemediniz
+                </td>
+            </tr>
+        }
     </tbody>
 
 

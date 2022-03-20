@@ -138,6 +138,8 @@
     <Content Include="Areas\ManagerPanel\Content\dashboard.css" />
     <Content Include="Areas\ManagerPanel\Content\signin.css" />
     <Content Include="Areas\ManagerPanel\Images\login.png" />
+    <Content Include="Assets\Images\logo1.png" />
+    <Content Include="Assets\Images\logo2.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -154,6 +156,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\customstyle.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -166,6 +169,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ManagerPanel\Controllers\BrandController.cs" />
     <Compile Include="Areas\ManagerPanel\Controllers\CategoryController.cs" />
     <Compile Include="Areas\ManagerPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\ManagerPanel\Controllers\LoginController.cs" />
@@ -173,6 +177,8 @@
     <Compile Include="Areas\ManagerPanel\Filters\ManagerAuthenticationFilterAttribute.cs" />
     <Compile Include="Areas\ManagerPanel\ManagerPanelAreaRegistration.cs" />
     <Compile Include="Areas\ManagerPanel\ViewModels\ManagerLoginViewModel.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,6 +221,12 @@
     <Content Include="Areas\ManagerPanel\Views\Category\Index.cshtml" />
     <Content Include="Areas\ManagerPanel\Views\Product\Create.cshtml" />
     <Content Include="Areas\ManagerPanel\Views\Product\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Delete.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Details.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
@@ -222,6 +234,9 @@
     <Content Include="Scripts\bootstrap.esm.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Pages\CategoryNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -233,7 +248,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ManagerPanel\Data\" />
     <Folder Include="Assets\ProductImages\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
