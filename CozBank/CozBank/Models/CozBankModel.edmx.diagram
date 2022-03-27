@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ecea890aa99d4753bbf50e2ab14e1852" Name="Diagram1">
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.Accounts" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.Histories" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.TransferHistories" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.Actors" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.ActorTypes" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.Lookups" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.LookupTypes" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="veksisd1_CozBank_DBModel.Users" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Account_Actor" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Account_LookupsCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Account_LookupsType" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Histories_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_TransferHistories_FromAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_TransferHistories_ToAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Actor_ActorType" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_Actor_UpActor" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_LookUp_LookUpType" ManuallyRouted="false" />
+        <AssociationConnector Association="veksisd1_CozBank_DBModel.FK_LookUp_UpLookUp" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

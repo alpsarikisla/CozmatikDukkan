@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="veksisd1_CozBank_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNumber" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="CardReqMount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="CardReqYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Cvv" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="ActorId" Type="Int32" Nullable="false" />
+    <Property Name="CurrencyTypeId" Type="Int32" Nullable="false" />
+    <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Actors" Relationship="Self.FK_Account_Actor" FromRole="Accounts" ToRole="Actors" />
+    <NavigationProperty Name="Lookups" Relationship="Self.FK_Account_LookupsCurrency" FromRole="Accounts" ToRole="Lookups" />
+    <NavigationProperty Name="Lookups1" Relationship="Self.FK_Account_LookupsType" FromRole="Accounts" ToRole="Lookups" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_Histories_Account" FromRole="Accounts" ToRole="Histories" />
+    <NavigationProperty Name="TransferHistories" Relationship="Self.FK_TransferHistories_FromAccount" FromRole="Accounts" ToRole="TransferHistories" />
+    <NavigationProperty Name="TransferHistories1" Relationship="Self.FK_TransferHistories_ToAccount" FromRole="Accounts" ToRole="TransferHistories" />
+  </EntityType>
+  <EntityType Name="Histories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Histories_Account" FromRole="Histories" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="TransferHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromId" Type="Int32" Nullable="false" />
+    <Property Name="ToId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_TransferHistories_FromAccount" FromRole="TransferHistories" ToRole="Accounts" />
+    <NavigationProperty Name="Accounts1" Relationship="Self.FK_TransferHistories_ToAccount" FromRole="TransferHistories" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Actors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ActorTypeId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Actor" FromRole="Actors" ToRole="Accounts" />
+    <NavigationProperty Name="ActorTypes" Relationship="Self.FK_Actor_ActorType" FromRole="Actors" ToRole="ActorTypes" />
+    <NavigationProperty Name="Actors1" Relationship="Self.FK_Actor_UpActor" FromRole="Actors" ToRole="Actors1" />
+    <NavigationProperty Name="Actors2" Relationship="Self.FK_Actor_UpActor" FromRole="Actors1" ToRole="Actors" />
+  </EntityType>
+  <EntityType Name="ActorTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Actors" Relationship="Self.FK_Actor_ActorType" FromRole="ActorTypes" ToRole="Actors" />
+  </EntityType>
+  <EntityType Name="Lookups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UpLookupId" Type="Int32" />
+    <Property Name="LookupTypeId" Type="Int32" Nullable="false" />
+    <Property Name="RowOrder" Type="Int32" />
+    <Property Name="ShortCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_LookupsCurrency" FromRole="Lookups" ToRole="Accounts" />
+    <NavigationProperty Name="Accounts1" Relationship="Self.FK_Account_LookupsType" FromRole="Lookups" ToRole="Accounts" />
+    <NavigationProperty Name="LookupTypes" Relationship="Self.FK_LookUp_LookUpType" FromRole="Lookups" ToRole="LookupTypes" />
+    <NavigationProperty Name="Lookups1" Relationship="Self.FK_LookUp_UpLookUp" FromRole="Lookups" ToRole="Lookups1" />
+    <NavigationProperty Name="Lookups2" Relationship="Self.FK_LookUp_UpLookUp" FromRole="Lookups1" ToRole="Lookups" />
+  </EntityType>
+  <EntityType Name="LookupTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Lookups" Relationship="Self.FK_LookUp_LookUpType" FromRole="LookupTypes" ToRole="Lookups" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_Account_Actor">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="ActorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_LookupsCurrency">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="CurrencyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_LookupsType">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Histories_Account">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Histories" Type="Self.Histories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Histories">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferHistories_FromAccount">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="TransferHistories" Type="Self.TransferHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransferHistories">
+        <PropertyRef Name="FromId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferHistories_ToAccount">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="TransferHistories" Type="Self.TransferHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransferHistories">
+        <PropertyRef Name="ToId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actor_ActorType">
+    <End Role="ActorTypes" Type="Self.ActorTypes" Multiplicity="1" />
+    <End Role="Actors" Type="Self.Actors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActorTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actors">
+        <PropertyRef Name="ActorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actor_UpActor">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="1" />
+    <End Role="Actors1" Type="Self.Actors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actors1">
+        <PropertyRef Name="ActorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookUp_LookUpType">
+    <End Role="LookupTypes" Type="Self.LookupTypes" Multiplicity="1" />
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lookups">
+        <PropertyRef Name="LookupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookUp_UpLookUp">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="0..1" />
+    <End Role="Lookups1" Type="Self.Lookups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lookups1">
+        <PropertyRef Name="UpLookupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="veksisd1_CozBank_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+    <EntitySet Name="Histories" EntityType="Self.Histories" />
+    <EntitySet Name="TransferHistories" EntityType="Self.TransferHistories" />
+    <EntitySet Name="Actors" EntityType="Self.Actors" />
+    <EntitySet Name="ActorTypes" EntityType="Self.ActorTypes" />
+    <EntitySet Name="Lookups" EntityType="Self.Lookups" />
+    <EntitySet Name="LookupTypes" EntityType="Self.LookupTypes" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Account_Actor" Association="Self.FK_Account_Actor">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_LookupsCurrency" Association="Self.FK_Account_LookupsCurrency">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_LookupsType" Association="Self.FK_Account_LookupsType">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Histories_Account" Association="Self.FK_Histories_Account">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Histories" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferHistories_FromAccount" Association="Self.FK_TransferHistories_FromAccount">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="TransferHistories" EntitySet="TransferHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferHistories_ToAccount" Association="Self.FK_TransferHistories_ToAccount">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="TransferHistories" EntitySet="TransferHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actor_ActorType" Association="Self.FK_Actor_ActorType">
+      <End Role="ActorTypes" EntitySet="ActorTypes" />
+      <End Role="Actors" EntitySet="Actors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actor_UpActor" Association="Self.FK_Actor_UpActor">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="Actors1" EntitySet="Actors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookUp_LookUpType" Association="Self.FK_LookUp_LookUpType">
+      <End Role="LookupTypes" EntitySet="LookupTypes" />
+      <End Role="Lookups" EntitySet="Lookups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookUp_UpLookUp" Association="Self.FK_LookUp_UpLookUp">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Lookups1" EntitySet="Lookups" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

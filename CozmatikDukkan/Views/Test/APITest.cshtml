@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "APITest";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>APITest</h2>
+
+@using (Html.BeginForm("APITest", "Test", FormMethod.Post))
+{
+    <input type="submit" class="btn btn-success" value="Gönder"/>
+}

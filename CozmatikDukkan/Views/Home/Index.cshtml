@@ -23,7 +23,7 @@
                         <label>
                             @item.Price
                         </label>
-                        <a href="" class="btn btn-warning btn-sm d-block">
+                        <a href="@Url.Action("BuySometing","CheckOut", new { id= item.ID})" class="btn btn-warning btn-sm d-block">
                             Sepete Ekle
                         </a>
                     </div>

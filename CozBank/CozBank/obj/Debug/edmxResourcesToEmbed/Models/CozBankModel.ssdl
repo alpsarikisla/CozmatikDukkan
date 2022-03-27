@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="veksisd1_CozBank_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="16" />
+    <Property Name="CardReqMount" Type="nvarchar" MaxLength="2" />
+    <Property Name="CardReqYear" Type="nvarchar" MaxLength="4" />
+    <Property Name="Cvv" Type="nvarchar" MaxLength="3" />
+    <Property Name="ActorId" Type="int" Nullable="false" />
+    <Property Name="CurrencyTypeId" Type="int" Nullable="false" />
+    <Property Name="AccountTypeId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Histories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TransferHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromId" Type="int" Nullable="false" />
+    <Property Name="ToId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Actors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="ActorTypeId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ActorTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Lookups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpLookupId" Type="int" />
+    <Property Name="LookupTypeId" Type="int" Nullable="false" />
+    <Property Name="RowOrder" Type="int" />
+    <Property Name="ShortCode" Type="varchar" MaxLength="10" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LookupTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Account_Actor">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="ActorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_LookupsCurrency">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="CurrencyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_LookupsType">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="AccountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actor_ActorType">
+    <End Role="ActorTypes" Type="Self.ActorTypes" Multiplicity="1" />
+    <End Role="Actors" Type="Self.Actors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActorTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actors">
+        <PropertyRef Name="ActorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actor_UpActor">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="1" />
+    <End Role="Actors1" Type="Self.Actors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actors1">
+        <PropertyRef Name="ActorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Histories_Account">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Histories" Type="Self.Histories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Histories">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookUp_LookUpType">
+    <End Role="LookupTypes" Type="Self.LookupTypes" Multiplicity="1" />
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lookups">
+        <PropertyRef Name="LookupTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LookUp_UpLookUp">
+    <End Role="Lookups" Type="Self.Lookups" Multiplicity="0..1" />
+    <End Role="Lookups1" Type="Self.Lookups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lookups1">
+        <PropertyRef Name="UpLookupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferHistories_FromAccount">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="TransferHistories" Type="Self.TransferHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransferHistories">
+        <PropertyRef Name="FromId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferHistories_ToAccount">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="TransferHistories" Type="Self.TransferHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransferHistories">
+        <PropertyRef Name="ToId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="veksisd1_CozBank_DBModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="Account" store:Type="Tables" />
+    <EntitySet Name="Histories" EntityType="Self.Histories" Schema="Account" store:Type="Tables" />
+    <EntitySet Name="TransferHistories" EntityType="Self.TransferHistories" Schema="Account" store:Type="Tables" />
+    <EntitySet Name="Actors" EntityType="Self.Actors" Schema="Enterprise" store:Type="Tables" />
+    <EntitySet Name="ActorTypes" EntityType="Self.ActorTypes" Schema="Enterprise" store:Type="Tables" />
+    <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="Enterprise" store:Type="Tables" />
+    <EntitySet Name="LookupTypes" EntityType="Self.LookupTypes" Schema="Enterprise" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="Enterprise" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Actor" Association="Self.FK_Account_Actor">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_LookupsCurrency" Association="Self.FK_Account_LookupsCurrency">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_LookupsType" Association="Self.FK_Account_LookupsType">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actor_ActorType" Association="Self.FK_Actor_ActorType">
+      <End Role="ActorTypes" EntitySet="ActorTypes" />
+      <End Role="Actors" EntitySet="Actors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actor_UpActor" Association="Self.FK_Actor_UpActor">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="Actors1" EntitySet="Actors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Histories_Account" Association="Self.FK_Histories_Account">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Histories" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookUp_LookUpType" Association="Self.FK_LookUp_LookUpType">
+      <End Role="LookupTypes" EntitySet="LookupTypes" />
+      <End Role="Lookups" EntitySet="Lookups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LookUp_UpLookUp" Association="Self.FK_LookUp_UpLookUp">
+      <End Role="Lookups" EntitySet="Lookups" />
+      <End Role="Lookups1" EntitySet="Lookups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferHistories_FromAccount" Association="Self.FK_TransferHistories_FromAccount">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="TransferHistories" EntitySet="TransferHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferHistories_ToAccount" Association="Self.FK_TransferHistories_ToAccount">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="TransferHistories" EntitySet="TransferHistories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

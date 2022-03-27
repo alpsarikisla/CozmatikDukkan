@@ -1,0 +1,75 @@
+﻿@model CozmatikDukkan.ViewModel.DoPayViewModel
+@using CozmatikDukkan.Models
+@{
+    ViewBag.Title = "BuySometing";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    Product p = null;
+    if (ViewBag.product != null)
+    {
+        p = ViewBag.product as Product;
+    }
+}
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                Satın Al
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="~/Assets/ProductImages/@p.CoverImage" class="card-img-top" />
+                            <div class="card-body text-center">
+                                <h6>@p.Name</h6>
+
+                                <label>
+                                    @p.Price
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        @using (Html.BeginForm())
+                        {
+                            <div class="form-horizontal row">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(model => model.NameSurname, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.NameSurname, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NameSurname, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.LabelFor(model => model.CardNumber, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CardNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.ReqMonth, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ReqMonth, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReqMonth, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.ReqYear, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.ReqYear, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReqYear, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.Cvv, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cvv, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cvv, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <input type="submit" value="Ödemeyi Tamamla" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
